@@ -36,6 +36,9 @@ include_once 'config.php';
                 <a href="index.php?page=warehouse_man">Sandelio darbuotojas</a>
             </td>
             <td>
+                <a href="index.php?page=warehouse_man">Vadybininkas</a>
+            </td>
+            <td>
                 <a href="index.php?page=logout">Atsijungti</a>
             </td>
         <?php } ?>
@@ -49,7 +52,11 @@ if ($page === null) {
     include 'pages/registration.php';
 } else if ($page === 'login') {
     include 'pages/login.php';
-}?>
+} else if ($page === 'logout') {
+    include 'pages/logout.php';
+}
+
+?>
 <br/><br/>
 <!--footer-->
 <?php
