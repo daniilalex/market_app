@@ -45,9 +45,11 @@ include_once 'config.php';
     <?php
 if ($page === null) {
     include 'pages/parduotuves.php';
-} elseif ($page === 'register') {
+} else if ($page === 'register') {
     include 'pages/registration.php';
-} ?>
+} else if ($page === 'login') {
+    include 'pages/login.php';
+}?>
 <br/><br/>
 <!--footer-->
 <?php
