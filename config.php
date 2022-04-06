@@ -34,4 +34,12 @@ function printValue($arr)
     }
 }
 
+function getRole($mysql):string {
+   $sql = "select role from warehouse.role join warehouse.darbuotojai d on role = d.role_id where pastas = '" . $_SESSION['email'] . "'";
+   $result = mysqli_query($mysql, $sql);
+   $result = mysqli_fetch_assoc($result);
+   return $result['role'];
+}
+
+
 

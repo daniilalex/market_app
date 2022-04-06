@@ -1,7 +1,4 @@
 <?php
-$mysql = mysqli_connect('localhost', 'root', '', 'warehouse');
-var_dump($_POST);
-//$action = $_GET['action'] ?? null;
 if (isset($_POST['email'])) {
     $name = $_POST['name'];
     $job = $_POST['job_position'];
@@ -29,17 +26,17 @@ if (isset($_POST['email'])) {
         $errors[] = 'Pastas uzimtas';
     }
     if (empty($errors)) {
-        $sql = "INSERT INTO warehouse.darbuotojai (vardas, pareigybe, pastas, slaptazodis) VALUES ('$name', '$job', '$email', '$pass')";
+        $sql = "INSERT INTO warehouse.darbuotojai (vardas, role_id, pastas, slaptazodis) VALUES ('$name', '$job', '$email', '$pass')";
         mysqli_query($mysql, $sql);
-        header('Location', 'index.php?page=login&email=' . $email);
+        header('Location', 'index.php');
     }
 }
 ?>
 <h1>Register</h1>
 <?php foreach ($errors as $error) { ?>
-    <div>
+    <ul>
         <?php echo $error ?>
-    </div>
+    </ul>
 <?php } ?>
 
 <form action="#" method="post">
@@ -62,10 +59,10 @@ if (isset($_POST['email'])) {
 
         </select>
         <br><br>
-        Pastas : <input type="email" name="email">
+        Pastas : <input type="email" name="email"><br><br>
         Slaptažodis: <input type="password" id="password" name="password">
         <br><br>
-        <input type="submit" value="Prisijungti">
+        <input type="submit" value="Uzregistruoti" id="submit">
         <hr>
     </fieldset>
 </form>
