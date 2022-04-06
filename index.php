@@ -1,7 +1,16 @@
 <?php
 include_once 'config.php';
-?>
+$mysql = mysqli_connect('localhost', 'root', '', 'warehouse');
 
+$email = $_POST['email'];
+$_SESSION['email'] = $email;
+var_dump($_SESSION);
+$sql = "SELECT pareigybe FROM warehouse.darbuotojai WHERE pastas = '$email'";
+$results = mysqli_query($mysql, $sql);
+$results = mysqli_fetch_assoc($results);
+
+
+?>
 
 <hr>
 <!doctype html>
@@ -12,8 +21,8 @@ include_once 'config.php';
     <title>Warehouse!</title>
 </head>
 <body>
-    <style><?php include 'C:\xampp\htdocs\codeacademy\my_web\style.css' ?>
-    </style>
+<style><?php include 'C:\xampp\htdocs\codeacademy\my_web\style.css' ?>
+</style>
 <!--menu-->
 <table>
     <tr>
@@ -31,21 +40,30 @@ include_once 'config.php';
                 <a href="index.php?page=register">Register</a>
             </td>
         <?php } ?>
-        <?php if (isLoged() === true) { ?>
-            <td>
-                <a href="index.php?page=warehouse_man">Sandelio darbuotojas</a>
-            </td>
-            <td>
-                <a href="index.php?page=warehouse_man">Vadybininkas</a>
-            </td>
-            <td>
-                <a href="index.php?page=logout">Atsijungti</a>
-            </td>
-        <?php } ?>
+        <?php if (isLoged() === true) {
+            foreach ($results as $result) {
+                if ($result === 'sandelininkas') {
+                    ?>
+                    <td>
+                        <a href="index.php?page=warehouse_man">Sandelio darbuotojas</a>
+                    </td>
+                    <td>
+                        <a href="index.php?page=logout">Atsijungti</a>
+                    </td>
+                <?php } else { ?>
+                    <td>
+                        <a href="index.php?page=manager">Vadybininkas</a>
+                    </td>
+                    <td>
+                        <a href="index.php?page=logout">Atsijungti</a>
+                    </td>
+                <?php }
+            }
+        } ?>
     </tr>
 </table>
 
-    <?php
+<?php
 if ($page === null) {
     include 'pages/parduotuves.php';
 } else if ($page === 'register') {
