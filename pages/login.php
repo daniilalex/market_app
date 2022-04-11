@@ -15,14 +15,14 @@ if (isset($_POST['email'])) {
         $_SESSION['email'] = $email;
         header('Location: index.php');
     }
-}
-?>
 
-<?php foreach ($errors as $error) { ?>
-    <div>
-        <?php echo $error ?>
-    </div>
-<?php } ?>
+    foreach ($errors as $error) { ?>
+        <div>
+            <?php echo $error ?>
+        </div>
+    <?php }
+} ?>
+
 
 <form action="#" method="post">
     <fieldset>

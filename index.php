@@ -15,61 +15,65 @@ include_once 'config.php';
 </style>
 <!--menu-->
 <header>
-<table>
-    <tr>
-        <?php if (isLoged() === false) { ?>
-            <td>
-                <a href="index.php">Markets</a>
-            </td>
-            <td>
-                <a href="index.php?page=shop_products">Market products</a>
-            </td>
-            <td>
-                <a href="index.php?page=login">Login</a>
-            </td>
-            <td>
-                <a href="index.php?page=register">Register</a>
-            </td>
-        <?php } else {
-            if (getRole($mysql) === 'sandelininkas') { ?>
+    <table>
+        <tr>
+            <?php if (isLoged() === false) { ?>
                 <td>
-                    <a href="index.php?page=warehouse_products">Warehouse products</a><br>
+                    <a href="index.php">Markets</a>
                 </td>
                 <td>
-                    <a href="index.php?page=products">Products</a>
-                </td>
-            <?php }
-            if (getRole($mysql) === 'vadybininkas') { ?>
-                <td>
-                    <a href="index.php?page=warehouse_products">Warehouse products</a><br>
+                    <a href="index.php?page=shop_products">Market products</a>
                 </td>
                 <td>
-                    <a href="index.php?page=orders">Orders</a>
+                    <a href="index.php?page=login">Login</a>
                 </td>
+                <td>
+                    <a href="index.php?page=register">Register</a>
+                </td>
+            <?php } else {
+                if (getRole($mysql) === 'sandelininkas') { ?>
+                    <td>
+                        <a href="index.php?page=warehouse_products">Warehouse products</a><br>
+                    </td>
+                    <td>
+                        <a href="index.php?page=products">Products</a>
+                    </td>
+                <?php }
+                if (getRole($mysql) === 'vadybininkas') { ?>
+                    <td>
+                        <a href="index.php?page=warehouse_products">Warehouse products</a><br>
+                    </td>
+                    <td>
+                        <a href="index.php?page=orders">Orders</a>
+                    </td>
+                <?php } ?>
+                <td>
+                    <a href="index.php?page=logout">Log out</a>
+                </td>
+
             <?php } ?>
-            <td>
-                <a href="index.php?page=logout">Log out</a>
-            </td>
-
-        <?php } ?>
 
 
-    </tr>
-</table>
+        </tr>
+    </table>
 </header>
 <div class="main">
-<?php
-if ($page === null) {
-    include 'pages/parduotuves.php';
-} else if ($page === 'register') {
-    include 'pages/registration.php';
-} else if ($page === 'login') {
-    include 'pages/login.php';
-} else if ($page === 'logout') {
-    include 'pages/logout.php';
-}
+    <?php
+    if ($page === null) {
+        include 'pages/parduotuves.php';
+    } else if ($page === 'register') {
+        include 'pages/registration.php';
+    } else if ($page === 'login') {
+        include 'pages/login.php';
+    } else if ($page === 'logout') {
+        include 'pages/logout.php';
+    } else if ($page === 'products') {
+        include 'pages/products.php';
+    } else if ($page === 'warehouse_products') {
+        include 'pages/warehouse_products.php';
+    }
 
-?>
+    ?>
 </div>
 <br/><br/>
 <footer>&copy 2022</footer>

@@ -28,8 +28,11 @@ function printValue($arr)
 {
     if ($arr->num_rows > 0) {
         while ($row = $arr->fetch_assoc()) {
-            echo 'ID: ' . $row['id'] . '. ';
-            echo 'Name: ' . $row['name'] . '</br></br>';
+            echo 'ID: ' . $row['id'] . '. ' . '</br></br>';
+            echo 'Product category: ' . $row['category'] . '</br></br>';
+            echo 'Title: ' . $row['product_title'] . '</br></br>';
+            echo 'Price: ' . $row['price'] . '</br></br>';
+            echo 'Expire date: ' . $row['expire_date'] . '</br></br>';
         }
     }
 }

@@ -1,5 +1,4 @@
 <?php
-$mysql = mysqli_connect('localhost', 'root', '', 'warehouse');
 $results = mysqli_query($mysql, "SELECT * FROM warehouse.parduotuve");
 
 if (isset($_POST['name'])) {
@@ -14,7 +13,7 @@ if (isset($_POST['name'])) {
 }
 ?>
 
-<h1>Parduotuves</h1>
+<h1>Market Places</h1>
 
 <fieldset>
     <legend>Musu Partneriai</legend>
@@ -33,8 +32,8 @@ if (isset($_POST['name'])) {
     </table>
 </fieldset>
 <br><br>
-<form action="#" method="post">
+<form action="index.php" method="post">
     <input type="text" name="name" placeholder="parduotuves pavadinimas"><br><br>
     <input type="text" name="address" placeholder="adresas"><br><br>
-    <input type="submit" value="sukurti parduotuve">
+    <input type="submit" value="sukurti parduotuve" id="submit">
 </form>
