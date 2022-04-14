@@ -1,5 +1,6 @@
 <?php
 $results = mysqli_query($mysql, "SELECT * FROM warehouse.produktai");
+$secondResults = mysqli_fetch_array($results);
 
 $action = $_GET['action'] ?? null;
 if ($action === 'insert') { ?>
@@ -14,12 +15,10 @@ if (isset($_POST['category'])) {
     $expire_date = $_POST['expire_date'];
     $errors = [];
 
-    if ($name != null) {
-        $errors[] = 'This kind of product exists';
+    if ($name === $secondResults['product_title']) {
+        $errors[] = 'This product exist';
     }
-    if ($price < 1) {
-        $errors[] = 'The invalid price';
-    }
+
     if (empty($errors)) {
         $sql = "INSERT INTO warehouse.produktai (category, product_title, price, expire_date) VALUES ('$category', '$name', '$price', '$expire_date')";
         mysqli_query($mysql, $sql);

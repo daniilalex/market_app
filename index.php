@@ -22,9 +22,6 @@ include_once 'config.php';
                     <a href="index.php">Markets</a>
                 </td>
                 <td>
-                    <a href="index.php?page=shop_products">Market products</a>
-                </td>
-                <td>
                     <a href="index.php?page=login">Login</a>
                 </td>
                 <td>
@@ -44,7 +41,10 @@ include_once 'config.php';
                         <a href="index.php?page=warehouse_products">Warehouse products</a><br>
                     </td>
                     <td>
-                        <a href="index.php?page=orders">Orders</a>
+                        <a href="index.php?page=to_market">Order to market</a>
+                    </td>
+                    <td>
+                        <a href="index.php?page=shop_products">Market products</a>
                     </td>
                 <?php } ?>
                 <td>
@@ -71,6 +71,10 @@ include_once 'config.php';
         include 'pages/products.php';
     } else if ($page === 'warehouse_products') {
         include 'pages/warehouse_products.php';
+    } else if ($page === 'to_market') {
+        include 'pages/toMarket.php';
+    } else if ($page === 'shop_products') {
+        include 'pages/market_products.php';
     }
 
     ?>
