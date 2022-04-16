@@ -1,20 +1,19 @@
 <?php
-$results = mysqli_query($mysql, "SELECT parduotuve.pavadinimas,parduotuve.adresas, parduotuve.id FROM warehouse.parduotuve join warehouse.parduotuves_prekes pp on parduotuve.id = pp.parduotuve_id");
-$action = $_GET['action'] ?? null;
 
 if (isset($_POST['name'])) {
-
-    var_dump($_POST);
     $name = $_POST['name'];
     $address = $_POST['address'];
 
     $sql = "INSERT INTO warehouse.parduotuve (pavadinimas, adresas) VALUES ('$name', '$address')";
-     mysqli_query($mysql, $sql);
-    $results = mysqli_fetch_assoc($results);
-    var_dump($results);
-} else if ($action === 'to_products') {
-    $id= $_GET['id'];
+    mysqli_query($mysql, $sql);
 }
+
+$id = $_GET['id'] ?? null;
+$sql_shop = mysqli_query($mysql, "SELECT * FROM warehouse.parduotuve");
+$shops = mysqli_fetch_all($sql_shop, MYSQLI_ASSOC);
+var_dump($shops);
+
+
 ?>
 
 <h1>Market Places</h1>
@@ -26,12 +25,28 @@ if (isset($_POST['name'])) {
             <th>Pavadinimas</th>
             <th>Adresas</th>
         </tr>
-            <?php
-            foreach ($results as $result) { ?>
-        <tr>
-            <td><a href="index.php?page=shop_products&action=to_products&id=<?php echo $result['id'] ?>"><?php echo $result['pavadinimas'] ?></a></td>
-            <td><?php echo $result['adresas'] ?></td>
-        </tr>
+        <!--        <tr>-->
+        <!--            <form action="index.php" method="get">-->
+        <!--                <input type="hidden" name="page" value="shop">-->
+        <!--                <select name="shop_id">-->
+        <!--                    <option value="0">Choose market:</option>-->
+        <!--                    --><?php
+        //                    foreach ($shops as $shop) {
+        //                        ?>
+        <!--                        <option value="--><?php //echo $shop['id'] ?><!--">-->
+        <?php //echo $shop['pavadinimas'] ?><!--</option>-->
+        <!--                    --><?php //} ?>
+        <!--                </select><br><br>-->
+        <!--                <input type="submit" value="Select market" id="submit">-->
+        <!---->
+        <!--            </form>-->
+        <!--        </tr>-->
+        <?php
+        foreach ($shops as $shop) { ?>
+            <tr>
+                <td><a href="index.php?page=shop_products&id=<?php echo $shop['id'] ?>"><?php echo $shop['pavadinimas'] ?></a></td>
+                <td><?php echo $shop['adresas'] ?></td>
+            </tr>
         <?php } ?>
     </table>
 </fieldset>
@@ -41,3 +56,7 @@ if (isset($_POST['name'])) {
     <input type="text" name="address" placeholder="adresas"><br><br>
     <input type="submit" value="sukurti parduotuve" id="submit">
 </form>
+
+<!--select parduotuves_prekes.product_rest, count(*), product_id from parduotuves_prekes join parduotuve p on parduotuves_prekes.parduotuve_id = p.id where parduotuve_id = 1 group by product_id;-->
+<!--SELECT COUNT(DISTINCT parduotuves_prekes.product_rest)-->
+<!--FROM warehouse.parduotuves_prekes-->
