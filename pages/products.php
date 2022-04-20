@@ -3,6 +3,7 @@ $results = mysqli_query($mysql, "SELECT * FROM warehouse.produktai");
 $secondResults = mysqli_fetch_array($results);
 
 $action = $_GET['action'] ?? null;
+
 if ($action === 'insert') { ?>
     <h1>Your choice is done</h1>
 <?php } else { ?>
@@ -16,7 +17,7 @@ if (isset($_POST['category'])) {
     $errors = [];
 
     if ($name === $secondResults['product_title']) {
-        $errors[] = 'This product exist';
+        $errors[] = 'This product exists';
     }
 
     if (empty($errors)) {
@@ -50,6 +51,7 @@ if (isset($_POST['category'])) {
             <?php echo $error ?>
         </li>
     <?php }
+
 } ?>
 <h3>Insert Products</h3>
 <div class="product">
