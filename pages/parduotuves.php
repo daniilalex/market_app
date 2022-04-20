@@ -1,5 +1,4 @@
 <?php
-
 if (isset($_POST['name'])) {
     $name = $_POST['name'];
     $address = $_POST['address'];
@@ -8,12 +7,9 @@ if (isset($_POST['name'])) {
     mysqli_query($mysql, $sql);
 }
 
-$id = $_GET['id'] ?? null;
+
 $sql_shop = mysqli_query($mysql, "SELECT * FROM warehouse.parduotuve");
 $shops = mysqli_fetch_all($sql_shop, MYSQLI_ASSOC);
-var_dump($shops);
-
-
 ?>
 
 <h1>Market Places</h1>
@@ -25,22 +21,6 @@ var_dump($shops);
             <th>Pavadinimas</th>
             <th>Adresas</th>
         </tr>
-        <!--        <tr>-->
-        <!--            <form action="index.php" method="get">-->
-        <!--                <input type="hidden" name="page" value="shop">-->
-        <!--                <select name="shop_id">-->
-        <!--                    <option value="0">Choose market:</option>-->
-        <!--                    --><?php
-        //                    foreach ($shops as $shop) {
-        //                        ?>
-        <!--                        <option value="--><?php //echo $shop['id'] ?><!--">-->
-        <?php //echo $shop['pavadinimas'] ?><!--</option>-->
-        <!--                    --><?php //} ?>
-        <!--                </select><br><br>-->
-        <!--                <input type="submit" value="Select market" id="submit">-->
-        <!---->
-        <!--            </form>-->
-        <!--        </tr>-->
         <?php
         foreach ($shops as $shop) { ?>
             <tr>
@@ -57,6 +37,3 @@ var_dump($shops);
     <input type="submit" value="sukurti parduotuve" id="submit">
 </form>
 
-<!--select parduotuves_prekes.product_rest, count(*), product_id from parduotuves_prekes join parduotuve p on parduotuves_prekes.parduotuve_id = p.id where parduotuve_id = 1 group by product_id;-->
-<!--SELECT COUNT(DISTINCT parduotuves_prekes.product_rest)-->
-<!--FROM warehouse.parduotuves_prekes-->
