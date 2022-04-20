@@ -43,9 +43,6 @@ include_once 'config.php';
                     <td>
                         <a href="index.php?page=to_market">Order to market</a>
                     </td>
-                    <td>
-                        <a href="index.php?page=shop_products">Market products</a>
-                    </td>
                 <?php } ?>
                 <td>
                     <a href="index.php?page=logout">Log out</a>
@@ -75,8 +72,9 @@ include_once 'config.php';
         include 'pages/toMarket.php';
     } else if ($page === 'shop_products') {
         include 'pages/market_products.php';
+    } else if ($page === 'session_off') {
+        include 'pages/session_off.php';
     }
-
     ?>
 </div>
 <br/><br/>

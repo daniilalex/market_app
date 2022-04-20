@@ -5,6 +5,7 @@ ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
 session_start();
+
 $mysql = mysqli_connect('localhost', 'root', '', 'warehouse');
 if ($mysql->connect_error) {
     echo 'Error number: ' . $mysql->connect_errno;
@@ -43,11 +44,17 @@ function getRole($mysql):string {
    $result = mysqli_fetch_assoc($result);
    return $result['role'];
 }
+function printPre($arr) {
+    echo '<pre>';
+    var_dump($arr);
+    echo '</pre>';
+}
 
-$today = date('Y-m-d');
-//take price and expire date which is expired
-$sql = mysqli_query($mysql, "SELECT parduotuves_prekes.price, parduotuves_marza.marza FROM warehouse.parduotuves_prekes join warehouse.parduotuves_marza on parduotuves_prekes.parduotuve_id = parduotuves_marza.parduotuves_id WHERE parduotuves_prekes.expire_date = '$today' and parduotuves_prekes.utilize = 0");
-$expired = mysqli_fetch_all($sql, MYSQLI_ASSOC);
+
+
+
+
+
 
 
 
