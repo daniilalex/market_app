@@ -23,7 +23,6 @@ if (isset($_POST['product_id'])) {
     $errors = [];
     $today = date('Y-m-d');
     $toExpire = date('Y-m-d', strtotime('+ ' . $product[4] . 'days'));
-    printPre($product[4]);
 
 //take margin value from table
     $discount = mysqli_query($mysql, "SELECT * FROM warehouse.parduotuves_marza WHERE parduotuves_id = '$market_id'");
@@ -32,24 +31,33 @@ if (isset($_POST['product_id'])) {
 //create new variables for checks
     $product_title = $product[2];
     $category = $product[1];
+    printPre($price);
 
     foreach ($margins as $margin) {
 
         if ($category == 'fruits' && $margin['type'] == 'banana') {
             $price = number_format($price * ($price / 100 * $margin['marza']), 2);
             printPre($price);
+            break;
 
         } else if ($category == 'drinks' && $margin['type'] == 'coca_cola') {
             $price = number_format($price * ($price / 100 * $margin['marza']), 2);
             printPre($price);
+            break;
 
         } else if ($product_title == 'banana' && $margin['type'] == 'banana') {
             $price = number_format($price * ($price / 100 * $margin['marza']), 2);
             printPre($price);
+            break;
 
         } else if ($category == 'food' && $margin['type'] == 'expired') {
             $price = number_format($price * ($price / 100 * $margin['marza']), 2);
             printPre($price);
+            break;
+        } else if ($category == 'electronic' && $margin['type'] == 'general') {
+            $price = number_format($price * ($price / 100 * $margin['marza']), 2);
+            printPre($price);
+            break;
         }
     }
 

@@ -27,6 +27,9 @@ include_once 'config.php';
                 <td>
                     <a href="index.php?page=register">Register</a>
                 </td>
+                <td>
+                    <a href="index.php?page=markets_statistics">Markets Statistics</a>
+                </td>
             <?php } else {
                 if (getRole($mysql) === 'sandelininkas') { ?>
                     <td>
@@ -68,13 +71,16 @@ include_once 'config.php';
         include 'pages/products.php';
     } else if ($page === 'warehouse_products') {
         include 'pages/warehouse_products.php';
-    } else if ($page === 'to_market') {
-        include 'pages/toMarket.php';
     } else if ($page === 'shop_products') {
         include 'pages/market_products.php';
     } else if ($page === 'session_off') {
         include 'pages/session_off.php';
+    } else if ($page === 'to_market') {
+        include 'pages/toMarket.php';
+    } else if ($page === 'markets_statistics') {
+        include 'pages/markets_statistics.php';
     }
+    
     ?>
 </div>
 <br/><br/>

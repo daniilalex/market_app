@@ -28,39 +28,40 @@ if (isset($_POST['email'])) {
     if (empty($errors)) {
         $sql = "INSERT INTO warehouse.darbuotojai (vardas, role_id, pastas, slaptazodis) VALUES ('$name', '$job', '$email', '$pass')";
         mysqli_query($mysql, $sql);
-        header('Location', 'index.php');
+        header('Location', 'index.php?page=login' . $email);
     }
-}
-?>
-<h1>Register</h1>
-<?php foreach ($errors as $error) { ?>
+foreach ($errors as $error) { ?>
     <ul>
         <?php echo $error ?>
     </ul>
-<?php } ?>
+<?php }
+}?>
 
-<form action="#" method="post">
+
+<h1>Register</h1>
+
+<form action="index.php?page=register" method="post">
     <fieldset>
-        <legend>Registracija:</legend>
-        Vardas : <input type="text" id="name" name="name">
+        <legend>Registration:</legend>
+        Name: <input type="text" name="name">
         <br><br>
-        Pareigybe : <select name="job_position" id="job_position">
-            <option value="0">Jusu pareigybe</option>
+        Job Position : <select name="job_position">
+            <option value="0">Job position</option>
             <option value="sandelininkas"<?php
             if (($job ?? null) == 'sandelininkas') {
                 echo 'selected';
-            } ?>>Sandelininkas
+            } ?>>Warehouse worker
             </option>
             <option value="vadybininkas"<?php
             if (($job ?? null) == 'vadybininkas') {
                 echo 'selected';
-            } ?>>Vadybininkas
+            } ?>>Market manager
             </option>
 
         </select>
         <br><br>
-        Pastas : <input type="email" name="email"><br><br>
-        Slaptažodis: <input type="password" id="password" name="password">
+        Email : <input type="email" name="email" value="<?php echo $email ?? null ?>"><br><br>
+        Password: <input type="password" id="password" name="password">
         <br><br>
         <input type="submit" value="Uzregistruoti" id="submit">
         <hr>

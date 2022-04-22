@@ -5,7 +5,7 @@ if (isset($_POST['email'])) {
     $errors = [];
 
     if (empty($email) || empty($password)) {
-        $errors[] = 'Yra tusciu lauku';
+        $errors[] = 'There are empty spaces';
     }
     $sql = "SELECT role_id FROM warehouse.darbuotojai WHERE pastas = '$email'";
     $results = mysqli_query($mysql, $sql);
@@ -24,16 +24,16 @@ if (isset($_POST['email'])) {
 } ?>
 
 
-<form action="#" method="post">
+<form action="index.php?page=login" method="post">
     <fieldset>
-        <legend>Prisijungimas:</legend>
-        Paštas : <input type="email" id="email" name="email">
+        <legend>Log in:</legend>
+        Email : <input type="email" id="email" name="email" value="<?php echo $_GET['email'] ?? null ?>">
         <br><br>
-        Slaptažodis: <input type="password" id="password" name="password">
+        Password: <input type="password" id="password" name="password">
         <br><br>
         </select>
         <br><br>
-        <input type="submit" value="Prisijungti" id="submit">
+        <input type="submit" value="Log in" id="submit">
         <hr>
     </fieldset>
 </form>

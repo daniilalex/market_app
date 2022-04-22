@@ -15,7 +15,7 @@ if (isset($_SESSION['market'])) {
         $product_rest = mysqli_query($mysql, "SELECT product_rest FROM warehouse.parduotuves_prekes where parduotuves_prekes.id = '$product_id'");
         $product_rest = mysqli_fetch_column($product_rest);
 
-        $date = date('Y-m-d');
+        $date = date('Y-m-d H:i:s');
 
         $errors = [];
 
@@ -43,6 +43,7 @@ if (isset($_SESSION['market'])) {
             printPre($_SESSION['user']);
 
             if (isset($_SESSION['user'])) {
+                echo 'You have chosen your products';
                 $toBasket = mysqli_query($mysql, "INSERT INTO warehouse.krepselio_prekes (basket_id, product_id, amount, sum) VALUES ('$basket_id', '$product_id', '$amount', '$sum' )");
 
                 $basket_cart = mysqli_query($mysql, "SELECT p.product_title, kp.amount, kp.sum, product_rest from warehouse.krepselio_prekes kp
@@ -57,7 +58,7 @@ where kp.basket_id = {$_SESSION['user']}");
         }
     }
 }
-//get values from chosen market
+//get values from chosen market, is written below to display product rests first
 $sql = mysqli_query($mysql, "SELECT product_title,parduotuves_prekes.id,parduotuve_id,product_id, parduotuves_prekes.price, parduotuves_prekes.expire_date, product_rest FROM warehouse.parduotuves_prekes  join warehouse.produktai on parduotuves_prekes.product_id = produktai.id WHERE parduotuve_id = '$id' ");
 $results = mysqli_fetch_all($sql);
 
@@ -96,7 +97,7 @@ $results = mysqli_fetch_all($sql);
             </table>
         </fieldset>
         <div class="back">
-            <a href="index.php?page=session_off" id="submit">Clear your basket</a>
+            <a href="index.php?page=session_off&action=done" id="submit">Clear your basket</a>
         </div>
     </div>
 
@@ -115,8 +116,8 @@ $results = mysqli_fetch_all($sql);
                     </tr>
                 <?php } ?>
                 <tr>
-                    <td> Your total costs are:
-                        <?php echo $costs[0] ?> eu
+                    <td> Your total costs is:
+                        <?php echo (float)$costs[0] ?> eu
                     </td>
                 </tr>
             </table>

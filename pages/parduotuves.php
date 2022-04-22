@@ -15,11 +15,11 @@ $shops = mysqli_fetch_all($sql_shop, MYSQLI_ASSOC);
 <h1>Market Places</h1>
 
 <fieldset>
-    <legend>Musu Partneriai</legend>
+    <legend>Our partners</legend>
     <table>
         <tr>
-            <th>Pavadinimas</th>
-            <th>Adresas</th>
+            <th>Market Name</th>
+            <th>Address</th>
         </tr>
         <?php
         foreach ($shops as $shop) { ?>
@@ -32,8 +32,8 @@ $shops = mysqli_fetch_all($sql_shop, MYSQLI_ASSOC);
 </fieldset>
 <br><br>
 <form action="index.php" method="post">
-    <input type="text" name="name" placeholder="parduotuves pavadinimas"><br><br>
-    <input type="text" name="address" placeholder="adresas"><br><br>
-    <input type="submit" value="sukurti parduotuve" id="submit">
+    <input type="text" name="name" placeholder="market name"><br><br>
+    <input type="text" name="address" placeholder="address"><br><br>
+    <input type="submit" value="create market" id="submit">
 </form>
 

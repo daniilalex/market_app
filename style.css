@@ -8,10 +8,10 @@ header {
     height: 40px;
 }
 table td {
-    padding-right: 10px;
-    width: 140px;
+    width: 200px;
 }
 table {
+    width: 550px;
     margin: 5px;
     border-collapse: collapse;
 }
@@ -34,7 +34,7 @@ h3, h1 {
     color: #384f5d;
 }
 .main {
-    width: 400px;
+    width: 900px;
     margin: 0 auto;
 }
 footer {
@@ -76,6 +76,19 @@ footer {
 table, th, td {
     border-bottom: #384f5d 1px solid;
     padding-top: 20px;
+}
+.back {
+    margin-top: 20px;
+    float: right;
+}
+.markets {
+    display: flex;
+}
+legend {
+    font-size: 24px;
+}
+.market_out table {
+    width: 200px;
 }
 
 
