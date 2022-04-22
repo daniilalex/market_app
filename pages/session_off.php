@@ -1,5 +1,4 @@
 <?php
-$date = date('Y-m-d H:i:s');
 $done = $_GET['action'] ?? null;
 if ($done == 'done') {
     $sql_basket_value = mysqli_query($mysql, "delete from warehouse.krepselio_prekes where basket_id = {$_SESSION['user']}
